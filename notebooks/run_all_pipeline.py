@@ -101,7 +101,18 @@ print("Using catalog: insurance_catalog_linta")
 # MAGIC -- Analytics-ready: star schema (dim + fact tables) + denormalized data mart
 # MAGIC CREATE SCHEMA IF NOT EXISTS insurance_catalog_linta.gold
 # MAGIC COMMENT 'Business-ready star schema and data mart';
-
+# MAGIC %sql
+# MAGIC -- Databricks Serverless does not allow arbitrary writes to /mnt or DBFS paths.
+# MAGIC -- We create Unity Catalog Volumes instead and store raw files/checkpoints there.
+# MAGIC CREATE VOLUME IF NOT EXISTS insurance_catalog_eb.bronze.raw_data
+# MAGIC COMMENT 'Raw landing-zone files for synthetic and public source data';
+ 
+# COMMAND ----------
+ 
+# MAGIC %sql
+# MAGIC CREATE VOLUME IF NOT EXISTS insurance_catalog_eb.bronze.checkpoints
+# MAGIC COMMENT 'Checkpoint files for Bronze, Silver, and Gold processing';
+ 
 # COMMAND ----------
 
 print("Step 1 COMPLETE: Unity Catalog schemas created")
