@@ -113,6 +113,7 @@ print("Using catalog: insurance_catalog_linta")
 # MAGIC CREATE VOLUME IF NOT EXISTS insurance_catalog_eb.bronze.checkpoints
 # MAGIC COMMENT 'Checkpoint files for Bronze, Silver, and Gold processing';
  
+ 
 # COMMAND ----------
 
 print("Step 1 COMPLETE: Unity Catalog schemas created")
